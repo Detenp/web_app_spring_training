@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.lernejo</groupId>
-    <artifactId>maven_training</artifactId>
+    <artifactId>web_app_spring_training</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
@@ -34,7 +34,24 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!--(1)-->
+        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.5.5</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>
