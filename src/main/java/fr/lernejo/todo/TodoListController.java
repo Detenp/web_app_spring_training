@@ -12,16 +12,22 @@ import java.util.List;
 
 @RestController
 public class TodoListController {
-    private final LinkedList<Todo> list = new LinkedList<Todo>();
+    private final TodoRepository repository;
+
+    public TodoListController(TodoRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping(value = "/api/todo")
-    public ResponseEntity addToList(@RequestBody Todo todo) {
-        list.add(todo);
+    public ResponseEntity addToList(@RequestBody TodoEntity todo) {
+        this.repository.save(todo);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping(value = "/api/todo")
-    public List<Todo> getList() {
-        return list;
+    public Iterable<TodoEntity>  getList() {
+        //List<TodoEntity> toReturn = new LinkedList<>();
+        //repository.findAll().forEach(toReturn::add);
+        return repository.findAll();
     }
 }
